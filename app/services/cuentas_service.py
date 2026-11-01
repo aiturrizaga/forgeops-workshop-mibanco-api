@@ -1,9 +1,10 @@
 """Lógica de negocio de cuentas y movimientos."""
 
 import logging
+from decimal import Decimal
 
 from app.core.exceptions import CuentaNoEncontradaError
-from app.models.cuenta import Cuenta, Movimiento
+from app.models.cuenta import Cuenta, Moneda, Movimiento, TipoCuenta
 from app.repositories.base import CuentasRepository
 from app.services.generador_demo import GeneradorDatosDemo
 
@@ -27,6 +28,15 @@ class CuentasService:
 
     def listar_cuentas(self, usuario: str) -> list[Cuenta]:
         return self._repositorio.listar_por_usuario(usuario)
+
+    @staticmethod
+    def totales_disponibles(cuentas: list[Cuenta]) -> dict[Moneda, Decimal]:
+        """Suma el saldo disponible por moneda, sin tarjetas de crédito (son línea, no saldo)."""
+        totales: dict[Moneda, Decimal] = {}
+        for cuenta in cuentas:
+            if cuenta.tipo is not TipoCuenta.TARJETA_CREDITO:
+                totales[cuenta.moneda] = totales.get(cuenta.moneda, Decimal(0)) + cuenta.saldo_disponible
+        return totales
 
     def obtener_cuenta(self, usuario: str, cuenta_id: str) -> Cuenta:
         cuenta = self._repositorio.obtener_de_usuario(usuario, cuenta_id)

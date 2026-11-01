@@ -13,13 +13,17 @@ Monto = Annotated[Decimal, PlainSerializer(float, return_type=float, when_used="
 
 
 class CuentaOut(BaseModel):
+    """Datos de la cuenta SIN saldos (minimización de datos).
+
+    Los saldos solo viajan por GET /api/cuentas/saldos, cuando el usuario
+    pulsa «Mostrar saldos».
+    """
+
     id: str
     tipo: TipoCuenta
     alias: str
     numero_enmascarado: str
     moneda: Moneda
-    saldo_disponible: Monto
-    saldo_contable: Monto
 
     @classmethod
     def desde_entidad(cls, cuenta: Cuenta) -> "CuentaOut":
@@ -29,9 +33,34 @@ class CuentaOut(BaseModel):
             alias=cuenta.alias,
             numero_enmascarado=cuenta.numero_enmascarado,
             moneda=cuenta.moneda,
+        )
+
+
+class SaldoCuentaOut(BaseModel):
+    cuenta_id: str
+    moneda: Moneda
+    saldo_disponible: Monto
+    saldo_contable: Monto
+
+    @classmethod
+    def desde_entidad(cls, cuenta: Cuenta) -> "SaldoCuentaOut":
+        return cls(
+            cuenta_id=cuenta.id,
+            moneda=cuenta.moneda,
             saldo_disponible=cuenta.saldo_disponible,
             saldo_contable=cuenta.saldo_contable,
         )
+
+
+class TotalMonedaOut(BaseModel):
+    moneda: Moneda
+    saldo_disponible: Monto
+
+
+class SaldosResponse(BaseModel):
+    saldos: list[SaldoCuentaOut]
+    # Total disponible por moneda, sin tarjetas de crédito (son línea, no saldo)
+    totales: list[TotalMonedaOut]
 
 
 class MovimientoOut(BaseModel):

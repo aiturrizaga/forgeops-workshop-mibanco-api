@@ -81,6 +81,9 @@ Espera `HTTP/1.1 401` y `WWW-Authenticate: Bearer realm="mibanco"`.
 
 ```bash
 curl -s "$API" -H "Authorization: Bearer $TOKEN" | jq
+# Saldos bajo demanda (lo que llama el botón del ojo) y cabecera sin caché
+curl -si "$API/saldos" -H "Authorization: Bearer $TOKEN" | grep -i cache-control
+curl -s "$API/saldos" -H "Authorization: Bearer $TOKEN" | jq
 CUENTA=$(curl -s "$API" -H "Authorization: Bearer $TOKEN" | jq -r '.cuentas[0].id')
 curl -s "$API/$CUENTA/movimientos" -H "Authorization: Bearer $TOKEN" | jq '.movimientos[:3]'
 ```

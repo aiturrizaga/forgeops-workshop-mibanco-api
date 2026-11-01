@@ -23,6 +23,14 @@ def create_app() -> FastAPI:
     app.include_router(health.router)
     app.include_router(cuentas.router)
 
+    @app.middleware("http")
+    async def sin_cache(request: Request, call_next):
+        # Datos bancarios: ni el navegador ni proxies intermedios deben guardarlos
+        respuesta = await call_next(request)
+        if request.url.path.startswith("/api/"):
+            respuesta.headers["Cache-Control"] = "no-store"
+        return respuesta
+
     @app.exception_handler(CuentaNoEncontradaError)
     async def cuenta_no_encontrada(_: Request, exc: CuentaNoEncontradaError) -> JSONResponse:
         logger.info("Cuenta no encontrada o ajena: %s", exc.cuenta_id)

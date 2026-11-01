@@ -1,4 +1,4 @@
-"""Endpoints de cuentas y movimientos del usuario autenticado."""
+"""Endpoints de cuentas, saldos y movimientos del usuario autenticado."""
 
 from fastapi import APIRouter, status
 
@@ -9,6 +9,9 @@ from app.schemas.cuenta import (
     ErrorResponse,
     MovimientoOut,
     MovimientosResponse,
+    SaldoCuentaOut,
+    SaldosResponse,
+    TotalMonedaOut,
 )
 
 router = APIRouter(
@@ -20,8 +23,25 @@ router = APIRouter(
 
 @router.get("", response_model=CuentasResponse)
 def listar_cuentas(usuario: UsuarioActual, servicio: CuentasServiceDep) -> CuentasResponse:
+    """Cuentas del usuario, sin saldos."""
     cuentas = servicio.listar_cuentas(usuario)
     return CuentasResponse(cuentas=[CuentaOut.desde_entidad(c) for c in cuentas])
+
+
+@router.get("/saldos", response_model=SaldosResponse)
+def listar_saldos(usuario: UsuarioActual, servicio: CuentasServiceDep) -> SaldosResponse:
+    """Saldos de todas las cuentas del usuario y totales por moneda.
+
+    El frontend lo llama solo cuando el usuario pide ver sus saldos.
+    """
+    cuentas = servicio.listar_cuentas(usuario)
+    return SaldosResponse(
+        saldos=[SaldoCuentaOut.desde_entidad(c) for c in cuentas],
+        totales=[
+            TotalMonedaOut(moneda=moneda, saldo_disponible=total)
+            for moneda, total in servicio.totales_disponibles(cuentas).items()
+        ],
+    )
 
 
 @router.get(

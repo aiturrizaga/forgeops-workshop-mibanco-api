@@ -19,9 +19,14 @@ Navegador ──Bearer──▶ ingress-nginx ──/ig (se quita)──▶ Ping
 
 | Método y ruta | Descripción |
 |---|---|
-| `GET /api/cuentas` | Cuentas del usuario de `X-Usuario` (401 si falta la cabecera) |
-| `GET /api/cuentas/{id}/movimientos` | Cuenta y movimientos, del más reciente al más antiguo. Una cuenta de otro usuario o inexistente da **404** |
+| `GET /api/cuentas` | Cuentas del usuario de `X-Usuario` **sin saldos** (401 si falta la cabecera) |
+| `GET /api/cuentas/saldos` | Saldos disponible y contable de cada cuenta, y total disponible por moneda (sin tarjetas de crédito). El frontend lo llama solo al pulsar «Mostrar saldos» |
+| `GET /api/cuentas/{id}/movimientos` | Cuenta (sin saldo) y movimientos, del más reciente al más antiguo. Una cuenta de otro usuario o inexistente da **404** |
 | `GET /health` | Probe de Kubernetes (no se expone por IG) |
+
+**Minimización de datos:** los saldos no viajan con la lista de cuentas; solo se envían cuando
+el usuario los pide. Todas las respuestas de `/api/` llevan `Cache-Control: no-store`, así ni
+el navegador ni los proxies intermedios las guardan.
 
 ## Estructura
 
