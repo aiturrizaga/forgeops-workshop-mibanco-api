@@ -1,0 +1,29 @@
+# OPCIONAL: restringe el acceso al servicio de cuentas a los Pods de IG.
+# Solo afecta a los Pods de mibanco-cuentas-api (no toca los Pods de ForgeOps).
+#
+# Antes de aplicarla:
+#   1. Confirmar que los Pods de IG tienen la etiqueta app=ig (así viene en el
+#      repositorio forgeops; ojo: app.kubernetes.io/name=identity-platform la
+#      comparten TODOS los Pods de ForgeOps, por eso no se usa):
+#        kubectl -n lab get pods -l app=ig
+#   2. Confirmar que el CNI de Minikube aplica NetworkPolicies (el CNI por
+#      defecto con el driver docker normalmente NO las aplica; con Calico sí).
+# Si la etiqueta está mal y el CNI la aplica, IG recibirá timeouts (502/504).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mibanco-cuentas-api-solo-ig
+  namespace: lab
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: mibanco-cuentas-api
+  policyTypes: ["Ingress"]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: ig # etiqueta del Deployment ig en forgeops 2026.3.2 (kustomize/base/ig)
+      ports:
+        - protocol: TCP
+          port: 8000

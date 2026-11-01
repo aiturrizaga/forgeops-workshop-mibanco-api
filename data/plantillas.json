@@ -1,0 +1,164 @@
+{
+  "_comentario": "Plantillas de datos ficticios. Al primer acceso de cada usuario (sub de AM) se copia una plantilla, elegida de forma determinista por su sub, a la base SQLite con identificadores y números nuevos.",
+  "plantillas": {
+    "personal": {
+      "cuentas": [
+        {
+          "id": "c-ana-001",
+          "tipo": "AHORROS",
+          "alias": "Cuenta Sueldo",
+          "numero": "191-30458712-0-45",
+          "moneda": "PEN",
+          "saldo_disponible": 8452.37,
+          "saldo_contable": 8602.37,
+          "movimientos": [
+            {"id": "m-ana-001-01", "fecha": "2026-10-30", "descripcion": "Abono de remuneraciones", "comercio": null, "categoria": "Sueldo", "monto": 6850.00, "tipo": "ABONO"},
+            {"id": "m-ana-001-02", "fecha": "2026-10-29", "descripcion": "Compra supermercado", "comercio": "Supermercado El Ahorro - Miraflores", "categoria": "Supermercado", "monto": 287.45, "tipo": "CARGO"},
+            {"id": "m-ana-001-03", "fecha": "2026-10-28", "descripcion": "Pago de luz", "comercio": "Empresa de Energía Lima Sur", "categoria": "Servicios", "monto": 142.80, "tipo": "CARGO"},
+            {"id": "m-ana-001-04", "fecha": "2026-10-27", "descripcion": "Transferencia por billetera digital", "comercio": null, "categoria": "Transferencias", "monto": 60.00, "tipo": "CARGO"},
+            {"id": "m-ana-001-05", "fecha": "2026-10-25", "descripcion": "Taxi por aplicativo", "comercio": "MoviTaxi App", "categoria": "Transporte", "monto": 18.90, "tipo": "CARGO"},
+            {"id": "m-ana-001-06", "fecha": "2026-10-24", "descripcion": "Almuerzo", "comercio": "Cevichería La Caleta - Surquillo", "categoria": "Restaurantes", "monto": 74.00, "tipo": "CARGO"},
+            {"id": "m-ana-001-07", "fecha": "2026-10-22", "descripcion": "Pago de agua", "comercio": "Servicio de Agua Potable Lima", "categoria": "Servicios", "monto": 58.30, "tipo": "CARGO"},
+            {"id": "m-ana-001-08", "fecha": "2026-10-20", "descripcion": "Retiro en cajero", "comercio": "Cajero Av. Larco 1150", "categoria": "Retiros", "monto": 200.00, "tipo": "CARGO"},
+            {"id": "m-ana-001-09", "fecha": "2026-10-18", "descripcion": "Devolución de compra", "comercio": "Tienda Hogar Total - Jockey", "categoria": "Devoluciones", "monto": 129.90, "tipo": "ABONO"},
+            {"id": "m-ana-001-10", "fecha": "2026-10-15", "descripcion": "Recarga de celular", "comercio": "Operador Móvil Andino", "categoria": "Telefonía", "monto": 30.00, "tipo": "CARGO"}
+          ]
+        },
+        {
+          "id": "c-ana-002",
+          "tipo": "TARJETA_CREDITO",
+          "alias": "Tarjeta Clásica",
+          "numero": "4557-8812-3456-7821",
+          "moneda": "PEN",
+          "saldo_disponible": 5320.10,
+          "saldo_contable": 5320.10,
+          "movimientos": [
+            {"id": "m-ana-002-01", "fecha": "2026-10-30", "descripcion": "Streaming de video mensual", "comercio": "StreamPlus", "categoria": "Suscripciones", "monto": 44.90, "tipo": "CARGO"},
+            {"id": "m-ana-002-02", "fecha": "2026-10-28", "descripcion": "Compra en farmacia", "comercio": "Boticas Salud Total", "categoria": "Salud", "monto": 63.50, "tipo": "CARGO"},
+            {"id": "m-ana-002-03", "fecha": "2026-10-26", "descripcion": "Grifo", "comercio": "Estación de Servicio Primax-Norte", "categoria": "Combustible", "monto": 150.00, "tipo": "CARGO"},
+            {"id": "m-ana-002-04", "fecha": "2026-10-24", "descripcion": "Pago de tarjeta", "comercio": null, "categoria": "Pagos", "monto": 1200.00, "tipo": "ABONO"},
+            {"id": "m-ana-002-05", "fecha": "2026-10-21", "descripcion": "Cine", "comercio": "Cines del Pacífico - Larcomar", "categoria": "Entretenimiento", "monto": 56.00, "tipo": "CARGO"},
+            {"id": "m-ana-002-06", "fecha": "2026-10-19", "descripcion": "Ropa", "comercio": "Moda Urbana - Real Plaza", "categoria": "Compras", "monto": 219.80, "tipo": "CARGO"},
+            {"id": "m-ana-002-07", "fecha": "2026-10-17", "descripcion": "Delivery de comida", "comercio": "PidoYa Delivery", "categoria": "Restaurantes", "monto": 48.70, "tipo": "CARGO"},
+            {"id": "m-ana-002-08", "fecha": "2026-10-14", "descripcion": "Pasajes de bus interprovincial", "comercio": "Transportes Costa Sur", "categoria": "Viajes", "monto": 180.00, "tipo": "CARGO"},
+            {"id": "m-ana-002-09", "fecha": "2026-10-11", "descripcion": "Librería", "comercio": "Librería El Lector", "categoria": "Educación", "monto": 89.00, "tipo": "CARGO"},
+            {"id": "m-ana-002-10", "fecha": "2026-10-08", "descripcion": "Gimnasio mensual", "comercio": "Gimnasio Activa", "categoria": "Salud", "monto": 129.00, "tipo": "CARGO"}
+          ]
+        }
+      ]
+    },
+    "familiar": {
+      "cuentas": [
+        {
+          "id": "c-luis-001",
+          "tipo": "AHORROS",
+          "alias": "Ahorro Soles",
+          "numero": "191-22871456-0-08",
+          "moneda": "PEN",
+          "saldo_disponible": 3215.64,
+          "saldo_contable": 3215.64,
+          "movimientos": [
+            {"id": "m-luis-001-01", "fecha": "2026-10-31", "descripcion": "Abono de remuneraciones", "comercio": null, "categoria": "Sueldo", "monto": 4200.00, "tipo": "ABONO"},
+            {"id": "m-luis-001-02", "fecha": "2026-10-30", "descripcion": "Pago de alquiler", "comercio": null, "categoria": "Vivienda", "monto": 1500.00, "tipo": "CARGO"},
+            {"id": "m-luis-001-03", "fecha": "2026-10-29", "descripcion": "Mercado", "comercio": "Mercado Central de Surquillo", "categoria": "Supermercado", "monto": 95.40, "tipo": "CARGO"},
+            {"id": "m-luis-001-04", "fecha": "2026-10-27", "descripcion": "Internet hogar", "comercio": "Fibra Hogar Perú", "categoria": "Servicios", "monto": 109.00, "tipo": "CARGO"},
+            {"id": "m-luis-001-05", "fecha": "2026-10-25", "descripcion": "Recarga tarjeta de metro", "comercio": "Metro de Lima Línea 1", "categoria": "Transporte", "monto": 20.00, "tipo": "CARGO"},
+            {"id": "m-luis-001-06", "fecha": "2026-10-23", "descripcion": "Transferencia recibida", "comercio": null, "categoria": "Transferencias", "monto": 250.00, "tipo": "ABONO"},
+            {"id": "m-luis-001-07", "fecha": "2026-10-21", "descripcion": "Pollería", "comercio": "Pollería El Leñador - San Juan de Lurigancho", "categoria": "Restaurantes", "monto": 62.00, "tipo": "CARGO"},
+            {"id": "m-luis-001-08", "fecha": "2026-10-19", "descripcion": "Pago de gas", "comercio": "Gas Natural Lima", "categoria": "Servicios", "monto": 35.70, "tipo": "CARGO"},
+            {"id": "m-luis-001-09", "fecha": "2026-10-16", "descripcion": "Retiro en agente", "comercio": "Agente Bodega Don Pepe", "categoria": "Retiros", "monto": 100.00, "tipo": "CARGO"},
+            {"id": "m-luis-001-10", "fecha": "2026-10-12", "descripcion": "Ferretería", "comercio": "Ferretería El Constructor", "categoria": "Hogar", "monto": 46.80, "tipo": "CARGO"}
+          ]
+        },
+        {
+          "id": "c-luis-002",
+          "tipo": "AHORROS",
+          "alias": "Ahorro Dólares",
+          "numero": "191-22871457-1-93",
+          "moneda": "USD",
+          "saldo_disponible": 1850.25,
+          "saldo_contable": 1850.25,
+          "movimientos": [
+            {"id": "m-luis-002-01", "fecha": "2026-10-28", "descripcion": "Compra de dólares", "comercio": null, "categoria": "Cambio de moneda", "monto": 300.00, "tipo": "ABONO"},
+            {"id": "m-luis-002-02", "fecha": "2026-10-26", "descripcion": "Suscripción software en línea", "comercio": "CloudNotes Inc.", "categoria": "Suscripciones", "monto": 9.99, "tipo": "CARGO"},
+            {"id": "m-luis-002-03", "fecha": "2026-10-22", "descripcion": "Compra internacional en línea", "comercio": "GlobalShop Online", "categoria": "Compras", "monto": 64.50, "tipo": "CARGO"},
+            {"id": "m-luis-002-04", "fecha": "2026-10-20", "descripcion": "Intereses ganados", "comercio": null, "categoria": "Intereses", "monto": 1.85, "tipo": "ABONO"},
+            {"id": "m-luis-002-05", "fecha": "2026-10-18", "descripcion": "Transferencia del exterior", "comercio": null, "categoria": "Transferencias", "monto": 450.00, "tipo": "ABONO"},
+            {"id": "m-luis-002-06", "fecha": "2026-10-15", "descripcion": "Comisión por transferencia", "comercio": null, "categoria": "Comisiones", "monto": 5.00, "tipo": "CARGO"},
+            {"id": "m-luis-002-07", "fecha": "2026-10-12", "descripcion": "Curso en línea", "comercio": "AprendeYa Academy", "categoria": "Educación", "monto": 29.00, "tipo": "CARGO"},
+            {"id": "m-luis-002-08", "fecha": "2026-10-09", "descripcion": "Venta de dólares", "comercio": null, "categoria": "Cambio de moneda", "monto": 150.00, "tipo": "CARGO"},
+            {"id": "m-luis-002-09", "fecha": "2026-10-06", "descripcion": "Hosting web", "comercio": "HostPeru Cloud", "categoria": "Suscripciones", "monto": 12.00, "tipo": "CARGO"},
+            {"id": "m-luis-002-10", "fecha": "2026-10-03", "descripcion": "Reserva de hotel", "comercio": "Hotel Mirador del Cusco", "categoria": "Viajes", "monto": 120.00, "tipo": "CARGO"}
+          ]
+        },
+        {
+          "id": "c-luis-003",
+          "tipo": "TARJETA_CREDITO",
+          "alias": "Tarjeta Oro",
+          "numero": "5412-7734-9012-4410",
+          "moneda": "PEN",
+          "saldo_disponible": 2780.00,
+          "saldo_contable": 2780.00,
+          "movimientos": [
+            {"id": "m-luis-003-01", "fecha": "2026-10-30", "descripcion": "Electrodoméstico en cuotas", "comercio": "ElectroHogar - Plaza Norte", "categoria": "Compras", "monto": 1299.00, "tipo": "CARGO"},
+            {"id": "m-luis-003-02", "fecha": "2026-10-27", "descripcion": "Grifo", "comercio": "Grifo Repsur - Panamericana", "categoria": "Combustible", "monto": 120.00, "tipo": "CARGO"},
+            {"id": "m-luis-003-03", "fecha": "2026-10-25", "descripcion": "Chifa", "comercio": "Chifa Dragón Dorado - Barrio Chino", "categoria": "Restaurantes", "monto": 88.50, "tipo": "CARGO"},
+            {"id": "m-luis-003-04", "fecha": "2026-10-22", "descripcion": "Pago de tarjeta", "comercio": null, "categoria": "Pagos", "monto": 800.00, "tipo": "ABONO"},
+            {"id": "m-luis-003-05", "fecha": "2026-10-20", "descripcion": "Supermercado", "comercio": "Hipermercado La Canasta", "categoria": "Supermercado", "monto": 342.10, "tipo": "CARGO"},
+            {"id": "m-luis-003-06", "fecha": "2026-10-17", "descripcion": "Plan móvil", "comercio": "Operador Móvil Andino", "categoria": "Telefonía", "monto": 59.90, "tipo": "CARGO"},
+            {"id": "m-luis-003-07", "fecha": "2026-10-14", "descripcion": "Clínica - consulta", "comercio": "Clínica San Gabriel", "categoria": "Salud", "monto": 150.00, "tipo": "CARGO"},
+            {"id": "m-luis-003-08", "fecha": "2026-10-11", "descripcion": "Juguetería", "comercio": "Juguetería Mundo Feliz", "categoria": "Compras", "monto": 79.90, "tipo": "CARGO"},
+            {"id": "m-luis-003-09", "fecha": "2026-10-08", "descripcion": "Membresía anual", "comercio": null, "categoria": "Comisiones", "monto": 99.00, "tipo": "CARGO"},
+            {"id": "m-luis-003-10", "fecha": "2026-10-05", "descripcion": "Peaje", "comercio": "Peaje Ruta Sur", "categoria": "Transporte", "monto": 7.50, "tipo": "CARGO"}
+          ]
+        }
+      ]
+    },
+    "negocio": {
+      "cuentas": [
+        {
+          "id": "c-carla-001",
+          "tipo": "CORRIENTE",
+          "alias": "Cuenta Negocio",
+          "numero": "193-55012347-0-61",
+          "moneda": "PEN",
+          "saldo_disponible": 15730.90,
+          "saldo_contable": 16230.90,
+          "movimientos": [
+            {"id": "m-carla-001-01", "fecha": "2026-10-31", "descripcion": "Cobro con POS", "comercio": null, "categoria": "Ventas", "monto": 2345.60, "tipo": "ABONO"},
+            {"id": "m-carla-001-02", "fecha": "2026-10-30", "descripcion": "Pago a proveedor", "comercio": "Distribuidora Andina SAC", "categoria": "Proveedores", "monto": 3800.00, "tipo": "CARGO"},
+            {"id": "m-carla-001-03", "fecha": "2026-10-29", "descripcion": "Pago de impuestos", "comercio": null, "categoria": "Impuestos", "monto": 1120.00, "tipo": "CARGO"},
+            {"id": "m-carla-001-04", "fecha": "2026-10-28", "descripcion": "Depósito en ventanilla", "comercio": null, "categoria": "Depósitos", "monto": 1800.00, "tipo": "ABONO"},
+            {"id": "m-carla-001-05", "fecha": "2026-10-26", "descripcion": "Planilla de personal", "comercio": null, "categoria": "Planilla", "monto": 4500.00, "tipo": "CARGO"},
+            {"id": "m-carla-001-06", "fecha": "2026-10-24", "descripcion": "Transferencia de cliente", "comercio": null, "categoria": "Ventas", "monto": 3250.00, "tipo": "ABONO"},
+            {"id": "m-carla-001-07", "fecha": "2026-10-22", "descripcion": "Alquiler de local", "comercio": null, "categoria": "Vivienda", "monto": 2200.00, "tipo": "CARGO"},
+            {"id": "m-carla-001-08", "fecha": "2026-10-20", "descripcion": "Courier", "comercio": "Envíos Rápidos Perú", "categoria": "Logística", "monto": 85.00, "tipo": "CARGO"},
+            {"id": "m-carla-001-09", "fecha": "2026-10-18", "descripcion": "Mantenimiento de cuenta", "comercio": null, "categoria": "Comisiones", "monto": 15.00, "tipo": "CARGO"},
+            {"id": "m-carla-001-10", "fecha": "2026-10-15", "descripcion": "Cobro con POS", "comercio": null, "categoria": "Ventas", "monto": 1980.40, "tipo": "ABONO"}
+          ]
+        },
+        {
+          "id": "c-carla-002",
+          "tipo": "AHORROS",
+          "alias": "Ahorro Dólares",
+          "numero": "191-55012348-1-27",
+          "moneda": "USD",
+          "saldo_disponible": 6420.00,
+          "saldo_contable": 6420.00,
+          "movimientos": [
+            {"id": "m-carla-002-01", "fecha": "2026-10-29", "descripcion": "Transferencia entre cuentas", "comercio": null, "categoria": "Transferencias", "monto": 500.00, "tipo": "ABONO"},
+            {"id": "m-carla-002-02", "fecha": "2026-10-26", "descripcion": "Pago de importación", "comercio": "Importaciones del Sur EIRL", "categoria": "Proveedores", "monto": 1250.00, "tipo": "CARGO"},
+            {"id": "m-carla-002-03", "fecha": "2026-10-23", "descripcion": "Intereses ganados", "comercio": null, "categoria": "Intereses", "monto": 6.40, "tipo": "ABONO"},
+            {"id": "m-carla-002-04", "fecha": "2026-10-21", "descripcion": "Pasaje aéreo", "comercio": "Aerolínea Cóndor", "categoria": "Viajes", "monto": 389.00, "tipo": "CARGO"},
+            {"id": "m-carla-002-05", "fecha": "2026-10-18", "descripcion": "Cobro de cliente del exterior", "comercio": null, "categoria": "Ventas", "monto": 1800.00, "tipo": "ABONO"},
+            {"id": "m-carla-002-06", "fecha": "2026-10-15", "descripcion": "Comisión por transferencia", "comercio": null, "categoria": "Comisiones", "monto": 8.00, "tipo": "CARGO"},
+            {"id": "m-carla-002-07", "fecha": "2026-10-12", "descripcion": "Software de facturación", "comercio": "FacturaFácil Cloud", "categoria": "Suscripciones", "monto": 25.00, "tipo": "CARGO"},
+            {"id": "m-carla-002-08", "fecha": "2026-10-09", "descripcion": "Feria comercial - inscripción", "comercio": "Expo Negocios Lima", "categoria": "Marketing", "monto": 150.00, "tipo": "CARGO"},
+            {"id": "m-carla-002-09", "fecha": "2026-10-06", "descripcion": "Venta de dólares", "comercio": null, "categoria": "Cambio de moneda", "monto": 400.00, "tipo": "CARGO"},
+            {"id": "m-carla-002-10", "fecha": "2026-10-02", "descripcion": "Compra de dólares", "comercio": null, "categoria": "Cambio de moneda", "monto": 1000.00, "tipo": "ABONO"}
+          ]
+        }
+      ]
+    }
+  }
+}

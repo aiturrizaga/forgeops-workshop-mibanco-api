@@ -1,0 +1,94 @@
+{
+  "name": "01-mibanco-cuentas-api",
+  "comment": "El nombre empieza con 01- para evaluarse antes de 50-reverseproxy (ruta sin condición de ForgeOps que atrapa todo hacia IDM)",
+  "condition": "${find(request.uri.path, '^/api/cuentas(/|$)')}",
+  "baseURI": "http://mibanco-cuentas-api.lab.svc.cluster.local:8000",
+  "heap": [
+    {
+      "name": "SecretosMiBanco",
+      "type": "SystemAndEnvSecretStore",
+      "config": {
+        "format": "PLAIN"
+      }
+    }
+  ],
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "comment": "1. CORS: arma la respuesta del preflight OPTIONS antes de validar el token",
+          "name": "CorsMiBanco",
+          "type": "CorsFilter",
+          "config": {
+            "policies": [
+              {
+                "acceptedOrigins": ["https://mibanco.arvislab.com"],
+                "acceptedMethods": ["GET"],
+                "acceptedHeaders": ["Authorization", "Content-Type"],
+                "exposedHeaders": ["WWW-Authenticate"],
+                "maxAge": "10 minutes",
+                "allowCredentials": false
+              }
+            ]
+          }
+        },
+        {
+          "comment": "2. Valida el access token por introspección en AM (realm raíz /) y exige el scope cuentas.read",
+          "name": "ValidarTokenMiBanco",
+          "type": "OAuth2ResourceServerFilter",
+          "config": {
+            "scopes": ["cuentas.read"],
+            "requireHttps": false,
+            "realm": "mibanco",
+            "accessTokenResolver": {
+              "name": "IntrospeccionMiBanco",
+              "type": "TokenIntrospectionAccessTokenResolver",
+              "config": {
+                "endpoint": "&{am.url}/oauth2/introspect",
+                "providerHandler": {
+                  "type": "Chain",
+                  "config": {
+                    "filters": [
+                      {
+                        "type": "ClientSecretBasicAuthenticationFilter",
+                        "config": {
+                          "clientId": "mibanco-ig-introspect",
+                          "clientSecretId": "mibanco.ig.introspect.secret",
+                          "secretsProvider": "SecretosMiBanco"
+                        }
+                      }
+                    ],
+                    "handler": "ForgeRockClientHandler"
+                  }
+                }
+              }
+            },
+            "cache": {
+              "enabled": true,
+              "defaultTimeout": "1 minute",
+              "maxTimeout": "5 minutes"
+            }
+          }
+        },
+        {
+          "comment": "3. Se descarta cualquier X-Usuario del cliente y el token; se agrega el sub (UUID) validado por AM. Verificado: en este AM user_id, username, sub y subname traen el mismo UUID",
+          "type": "HeaderFilter",
+          "config": {
+            "messageType": "REQUEST",
+            "remove": ["X-Usuario", "Authorization"],
+            "add": {
+              "X-Usuario": ["${contexts.oauth2.accessToken.info.sub}"]
+            }
+          }
+        }
+      ],
+      "handler": {
+        "type": "ReverseProxyHandler",
+        "config": {
+          "soTimeout": "10 seconds"
+        }
+      }
+    }
+  }
+}

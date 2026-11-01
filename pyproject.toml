@@ -1,0 +1,26 @@
+[project]
+name = "mibanco-cuentas-api"
+version = "1.0.0"
+description = "API de cuentas mock protegida por PingGateway (demo ForgeOps)"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.162.0",
+    "uvicorn>=0.54.0",
+    "pydantic>=2.14.2",
+    "pydantic-settings>=2.16.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "httpx>=0.28.1",
+]
+
+[tool.uv]
+# Es una aplicación, no una librería: uv no instala el proyecto como paquete
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

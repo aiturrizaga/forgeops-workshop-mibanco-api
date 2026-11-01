@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+# Secrets reales nunca al repositorio (usar el .example.yaml)
+k8s/*secret*.yaml
+!k8s/*.example.yaml
+var/

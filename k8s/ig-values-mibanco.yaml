@@ -1,0 +1,16 @@
+# Values para el release Helm `ping-gateway` (Deployment `ig` de ForgeOps).
+# Las claves ig.image.* e ig.envFrom existen en el chart 2026.3.2
+# (verificado con: helm -n lab get values ping-gateway -a).
+#
+# Uso (ver docs/DESPLIEGUE.md, paso 6, opción B):
+#   helm -n lab upgrade ping-gateway <chart> --version 2026.3.2 --reuse-values -f k8s/ig-values-mibanco.yaml
+ig:
+  image:
+    # Imagen derivada construida en el Docker de Minikube (ig/Dockerfile)
+    repository: ig-mibanco
+    tag: 1.0.0
+    pullPolicy: IfNotPresent
+  # Expone MIBANCO_IG_INTROSPECT_SECRET (clave del Secret) como variable de entorno
+  envFrom:
+    - secretRef:
+        name: mibanco-ig-introspect

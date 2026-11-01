@@ -1,0 +1,2 @@
+# Los scripts se ejecutan en la VM Linux: siempre con saltos de línea LF
+*.sh text eol=lf
